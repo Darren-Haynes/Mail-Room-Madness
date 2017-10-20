@@ -11,22 +11,24 @@ the donation.
 DONORS = {'joe': [40], 'sara': [20, 40, 10], 'nick': [400, 200, 800]}
 
 
-def show_menu():
-    """Display menu for user input."""
-    choice = input("""Please choose from the following:\n
-        Send a 'Thank You' note - 1\n
-        Create a Report.        - 2\n
-        Exit                    - 3\n""")
+def mailroom_main():
+    """Logic for the mailroom program."""
+    choice = show_menu()
     if choice == '1':
         thank_you()
-        return True
     elif choice == '2':
         create_report()
-        return True
     elif choice == '3':
         print("Goodbye.")
         exit_program()
-        return True
     else:
         print("Please choose a valid option.")
-        show_menu()
+        mailroom_main()
+
+
+def show_menu():
+    """Display menu for user input."""
+    return input("""Please choose from the following:\n
+        Send a 'Thank You' note - 1\n
+        Create a Report.        - 2\n
+        Exit                    - 3\n""")
