@@ -16,6 +16,7 @@ DONORS = {'Joe Colling': [40],
 
 
 def update_donor_info(name, donation):
+    """Update DONORS dictionary with new entry info."""
     if name in DONORS:
         DONORS[name].append(int(donation))
     else:
@@ -23,14 +24,17 @@ def update_donor_info(name, donation):
 
 
 def input_name():
+    """Prompt for and return name string."""
     return input("\nPlease type a full name: ").title()
 
 
 def enter_donation():
+    """Prompt for and return donation amount."""
     return input("Please input donors donation amount: ")
 
 
 def thank_you():
+    """Get information (name, donation) for donor, print thank you msg."""
     name = input_name()
     while name.lower() == 'list':
         print_donor_list()
@@ -38,34 +42,50 @@ def thank_you():
     donation = enter_donation()
     update_donor_info(name, donation)
     print("""\nDear {0},
-Thank you for your generous ${1:.2f} donation\n\n""".format(name, float(donation)))
-    #show_menu()
+Thank you for your generous ${1:.2f} \
+donation\n\n""".format(name, float(donation)))
 
 
 def print_report(input_list):
-    print("\n\n\n***********************************************************************")
+    """Use sorted list information. to print formatted list."""
+    print("\n\n\n***********************************************************\
+************")
     print("Donors listed by greatest donations".upper())
-    print("{0}         {1}    {2}    {3}".format("NAME", "AVG. DONATION", "TOTAL DONATION", "NUM DONATIONS"))
+    print("{0}         {1}    {2}    {3}".format("NAME",
+                                                 "AVG. DONATION",
+                                                 "TOTAL DONATION",
+                                                 "NUM DONATIONS"))
     for donor in input_list:
         name = donor[0]
         total = sum(donor[1])
         number = len(donor[1])
         average = total / number
-        print("{0:10s}    {1:10.2f}    {2:15.2f}    {3:10d}".format(name, float(average), float(total), number))
-    print("**********************************************************************\n\n\n\n")
+        print("{0:10s}    {1:10.2f}     {2:15.2f}     {3:10d}".
+              format(name,
+                     float(average),
+                     float(total),
+                     number))
+    print("*****************************************************************\
+*****\n\n\n\n")
+
 
 def print_donor_list():
+    """Print list of donors for Thank You function."""
     for donor in DONORS:
         print (donor)
 
+
 def create_report():
+    """Sort donors list by total and pass it to print_report."""
     sorted_by_total = sorted(
         DONORS.items(), key=lambda donor: sum(donor[1]), reverse=True)
     print_report(sorted_by_total)
-    #mailroom_main()
+
 
 def exit_program():
+    """Exit the program when user selects that choice."""
     KeyboardInterrupt()
+
 
 def mailroom_main():
     """Logic for the mailroom program."""
@@ -80,10 +100,9 @@ def mailroom_main():
             break
         else:
             print("Please choose a valid option.")
-            #mailroom_main()
-
     print("Goodbye.")
     exit_program()
+
 
 def show_menu():
     """Display menu for user input."""
