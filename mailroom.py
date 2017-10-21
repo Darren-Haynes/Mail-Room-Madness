@@ -13,13 +13,13 @@ DONORS = {'Joe': [40], 'Sara': [20, 40, 10], 'Nick': [400, 200, 800]}
 
 def update_donor_info(name, donation):
     if name in DONORS:
-        DONORS[name].append(donation)
+        DONORS[name].append(int(donation))
     else:
-        DONORS[name] = [donation]
+        DONORS[name] = [int(donation)]
 
 
 def input_name():
-    return  input("\nPlease type a full name: ").title()
+    return input("\nPlease type a full name: ").title()
 
 
 def enter_donation():
@@ -28,41 +28,58 @@ def enter_donation():
 
 def thank_you():
     name = input_name()
+    while name.lower() == 'list':
+        print_donor_list()
+        name = input_name()
     donation = enter_donation()
     update_donor_info(name, donation)
-    print("""Dear {},
-Thank you for your generous ${} donation""".format(name, donation))
-    show_menu()
+    print("""\nDear {0},
+Thank you for your generous ${1:.2f} donation\n\n""".format(name, float(donation)))
+    #show_menu()
 
 
 def print_report(input_list):
+    print("\n\n\n***********************************************************************")
     print("Donors listed by greatest donations".upper())
+    print("{0}         {1}    {2}    {3}".format("NAME", "AVG. DONATION", "TOTAL DONATION", "NUM DONATIONS"))
     for donor in input_list:
         name = donor[0]
         total = sum(donor[1])
         number = len(donor[1])
         average = total / number
-    print(name, average, total, number)
+        print("{0:10s}    {1:10.2f}    {2:15.2f}    {3:10d}".format(name, float(average), float(total), number))
+    print("**********************************************************************\n\n\n\n")
+
+def print_donor_list():
+    for donor in DONORS:
+        print (donor)
 
 def create_report():
     sorted_by_total = sorted(
         DONORS.items(), key=lambda donor: sum(donor[1]), reverse=True)
     print_report(sorted_by_total)
+    #mailroom_main()
+
+def exit_program():
+    KeyboardInterrupt()
 
 def mailroom_main():
     """Logic for the mailroom program."""
-    choice = show_menu()
-    if choice == '1':
-        thank_you()
-    elif choice == '2':
-        create_report()
-    elif choice == '3':
-        print("Goodbye.")
-        exit_program()
-    else:
-        print("Please choose a valid option.")
-        mailroom_main()
+    choice = 0
+    while choice != '3':
+        choice = show_menu()
+        if choice == '1':
+            thank_you()
+        elif choice == '2':
+            create_report()
+        elif choice == '3':
+            break
+        else:
+            print("Please choose a valid option.")
+            #mailroom_main()
 
+    print("Goodbye.")
+    exit_program()
 
 def show_menu():
     """Display menu for user input."""
