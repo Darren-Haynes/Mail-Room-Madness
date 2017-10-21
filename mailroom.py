@@ -8,7 +8,11 @@ the donation.
 
 """
 
-DONORS = {'Joe': [40], 'Sara': [20, 40, 10], 'Nick': [400, 200, 800]}
+DONORS = {'Joe Colling': [40],
+          'Sara Williams': [20, 40, 10],
+          'Nick Clause': [400, 200, 800],
+          'Jenny Smith': [10000, 8000, 900],
+          'Darryl Biggins': [100, 150, 100, 100, 150]}
 
 
 def update_donor_info(name, donation):
