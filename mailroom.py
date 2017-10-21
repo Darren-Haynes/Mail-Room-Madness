@@ -49,24 +49,22 @@ donation\n\n""".format(name, float(donation)))
 def print_report(input_list):
     """Use sorted list information. to print formatted list."""
     print("\n\n\n***********************************************************\
-************")
+********************************")
     print("Donors listed by greatest donations".upper())
-    print("{0}         {1}    {2}    {3}".format("NAME",
-                                                 "AVG. DONATION",
-                                                 "TOTAL DONATION",
-                                                 "NUM DONATIONS"))
+    print("{0:30}         {1:15}    {2:15}    {3:10}".
+          format("NAME", "AVG. DONATION", "TOTAL DONATION", "NUM DONATIONS"))
     for donor in input_list:
         name = donor[0]
         total = sum(donor[1])
         number = len(donor[1])
         average = total / number
-        print("{0:10s}    {1:10.2f}     {2:15.2f}     {3:10d}".
+        print("{0:30s}    {1:15.2f}     {2:15.2f}     {3:10d}".
               format(name,
                      float(average),
                      float(total),
                      number))
     print("*****************************************************************\
-*****\n\n\n\n")
+*************************\n\n\n\n")
 
 
 def print_donor_list():
