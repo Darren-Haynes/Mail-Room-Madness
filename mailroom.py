@@ -8,8 +8,46 @@ the donation.
 
 """
 
-DONORS = {'joe': [40], 'sara': [20, 40, 10], 'nick': [400, 200, 800]}
+DONORS = {'Joe': [40], 'Sara': [20, 40, 10], 'Nick': [400, 200, 800]}
 
+
+def update_donor_info(name, donation):
+    if name in DONORS:
+        DONORS[name].append(donation)
+    else:
+        DONORS[name] = [donation]
+
+
+def input_name():
+    return  input("\nPlease type a full name: ").title()
+
+
+def enter_donation():
+    return input("Please input donors donation amount: ")
+
+
+def thank_you():
+    name = input_name()
+    donation = enter_donation()
+    update_donor_info(name, donation)
+    print("""Dear {},
+Thank you for your generous ${} donation""".format(name, donation))
+    show_menu()
+
+
+def print_report(input_list):
+    print("Donors listed by greatest donations".upper())
+    for donor in input_list:
+        name = donor[0]
+        total = sum(donor[1])
+        number = len(donor[1])
+        average = total / number
+    print(name, average, total, number)
+
+def create_report():
+    sorted_by_total = sorted(
+        DONORS.items(), key=lambda donor: sum(donor[1]), reverse=True)
+    print_report(sorted_by_total)
 
 def mailroom_main():
     """Logic for the mailroom program."""
@@ -32,3 +70,6 @@ def show_menu():
         Send a 'Thank You' note - 1\n
         Create a Report.        - 2\n
         Exit                    - 3\n""")
+
+if __name__ == '__main__':
+    mailroom_main()
