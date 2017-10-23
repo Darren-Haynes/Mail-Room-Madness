@@ -22,6 +22,7 @@ def update_donor_info(name, donation):
         DONORS[name].append(int(donation))
     else:
         DONORS[name] = [int(donation)]
+    return True
 
 
 def input_name():
@@ -66,12 +67,13 @@ def print_report(input_list):
                      number))
     print("*****************************************************************\
 *************************\n\n\n\n")
-
+    return True
 
 def print_donor_list():
     """Print list of donors for Thank You function."""
     for donor in DONORS:
         print (donor)
+    return True
 
 
 def create_report():
@@ -79,6 +81,7 @@ def create_report():
     sorted_by_total = sorted(
         DONORS.items(), key=lambda donor: sum(donor[1]), reverse=True)
     print_report(sorted_by_total)
+    return True
 
 
 def exit_program():
