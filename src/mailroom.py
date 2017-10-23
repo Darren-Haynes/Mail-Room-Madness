@@ -25,17 +25,17 @@ def update_donor_info(name, donation):
     return True
 
 
-def input_name():
+def input_name():  # pragma: no cover
     """Prompt for and return name string."""
     return input("\nPlease type a full name: ").title()
 
 
-def enter_donation():
+def enter_donation():  # pragma: no cover
     """Prompt for and return donation amount."""
     return input("Please input donors donation amount: ")
 
 
-def thank_you():
+def thank_you():  # pragma: no cover
     """Get information (name, donation) for donor, print thank you msg."""
     name = input_name()
     while name.lower() == 'list':
@@ -84,12 +84,12 @@ def create_report():
     return True
 
 
-def exit_program():
+def exit_program():  # pragma: no cover
     """Exit the program when user selects that choice."""
     KeyboardInterrupt()
 
 
-def mailroom_main():
+def mailroom_main():  # pragma: no cover
     """Logic for the mailroom program."""
     choice = 0
     while choice != '3':
