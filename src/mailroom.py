@@ -38,10 +38,12 @@ def enter_donation():  # pragma: no cover
 def thank_you():  # pragma: no cover
     """Get information (name, donation) for donor, print thank you msg."""
     name = input_name()
+    donation = ' '
     while name.lower() == 'list':
         print_donor_list()
         name = input_name()
-    donation = enter_donation()
+    while not donation.isnumeric():
+        donation = enter_donation()
     update_donor_info(name, donation)
     print("""\nDear {0},
 Thank you for your generous ${1:.2f} \
@@ -68,6 +70,7 @@ def print_report(input_list):
     print("*****************************************************************\
 *************************\n\n\n\n")
     return True
+
 
 def print_donor_list():
     """Print list of donors for Thank You function."""

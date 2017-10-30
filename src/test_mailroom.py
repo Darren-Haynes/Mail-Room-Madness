@@ -1,4 +1,5 @@
-import pytest
+"""Test Mailroom app functionality."""
+
 
 sample_list = [('Jenny Smith', [10000, 8000, 900])]
 
