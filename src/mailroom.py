@@ -75,7 +75,7 @@ def print_report(input_list):
 def print_donor_list():
     """Print list of donors for Thank You function."""
     for donor in DONORS:
-        print (donor)
+        print(donor)
     return True
 
 
